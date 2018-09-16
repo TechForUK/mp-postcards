@@ -1,0 +1,21 @@
+<header>
+  <h2>NHS</h2>
+</header>
+
+<section>
+  <p>Dear {{mp}},</p>
+
+  <textarea [(ngModel)]="card" placeholder="Here are some automagically generated suggestions of to write about. Don't forget to include a personal story.">
+  </textarea>
+
+  <p>Yours Sincerely,</p>
+
+  <label>Yours Sincerely,
+    <input [(ngModel)]="name" placeholder="Your name">
+    <input [(ngModel)]="email" placeholder="Your email">
+  </label>
+</section>
+
+<nav>
+  <button [routerLink]="['/card-sent']">Send</button>
+</nav>

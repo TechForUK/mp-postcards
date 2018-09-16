@@ -1,0 +1,25 @@
+<section *ngIf="!found">
+  <p>Placeholder text. Why am I here?</p>
+</section>
+
+<section>
+  <label>Pick MP:
+    <input [(ngModel)]="name" (change)="onChange()" placeholder="Enter postcode">
+  </label>
+</section>
+
+<section *ngIf="found">
+  <img src="assets/mims.png">
+  <h2>MP Mims Davies</h2>
+
+  <p>All about Mims Davies</p>
+
+  <ul>
+    <li>Supports the government</li>
+    <li>Does not support Bref for Europe</li>
+  </ul>
+</section>
+
+<nav *ngIf="found">
+  <button [routerLink]="['/pick-topic']">Get started!</button>
+</nav>
