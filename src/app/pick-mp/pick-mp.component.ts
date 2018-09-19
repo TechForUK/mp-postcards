@@ -7,16 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PickMpComponent implements OnInit {
 
-  found: boolean = false;
   name: string;
+
+  results: string[];
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onChange(): void {
-    this.found = true;
+  search(event) {
+    this.results=[ 'Eastleigh' ];
   }
-
 }

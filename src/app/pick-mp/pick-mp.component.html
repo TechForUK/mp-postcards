@@ -3,12 +3,10 @@
 </section>
 
 <section>
-  <label>Pick MP:
-    <input [(ngModel)]="name" (change)="onChange()" placeholder="Enter postcode">
-  </label>
+  <p-autoComplete [(ngModel)]="name" [suggestions]="results" (completeMethod)="search($event)" [forceSelection]="true"></p-autoComplete>
 </section>
 
-<section *ngIf="found">
+<section *ngIf="name">
   <img src="assets/mims.png">
   <h2>MP Mims Davies</h2>
 
@@ -16,10 +14,10 @@
 
   <ul>
     <li>Supports the government</li>
-    <li>Does not support Bref for Europe</li>
+    <li>Does not support Brew for Europe</li>
   </ul>
 </section>
 
-<nav *ngIf="found">
-  <button [routerLink]="['/pick-topic']">Get started!</button>
+<nav *ngIf="name">
+  <button pButton type="button" [routerLink]="['/pick-topic']" label="Get started!"></button>
 </nav>
