@@ -9,7 +9,7 @@ import { CardSentComponent }      from './card-sent/card-sent.component';
 
 // Unlikely that these will stay as routes but it's quick and hacky!
 const routes: Routes = [
-  { path: '', redirectTo: '/pick-mp', pathMatch: 'full' },
+  { path: '', redirectTo: '/pick-topic', pathMatch: 'full' },
   { path: 'pick-mp', component: PickMpComponent },
   { path: 'pick-topic', component: PickTopicComponent },
   { path: 'write-card', component: WriteCardComponent },

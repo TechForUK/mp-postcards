@@ -1,6 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import "colours.scss";
+
 body {
   font-family: "system-ui";
+  margin: 0;
+}
+
+body .ui-button {
+  background-color: $button-colour;
+  border-color: $button-colour;
+}
+
+body > nav {
+  background-color: $dark-background;
+  padding: 15px;
+}
+
+body > header {
+  text-align: center;
+}
+
+main {
   padding: 2em 15% 2em 15%;
 }
 

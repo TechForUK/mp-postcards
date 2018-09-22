@@ -1,10 +1,6 @@
-<section *ngIf="!found">
-  <p>Placeholder text. Why am I here?</p>
-</section>
+<p>Who is your MP?</p>
 
-<section>
-  <p-autoComplete [(ngModel)]="name" [suggestions]="results" (completeMethod)="search($event)" [forceSelection]="true"></p-autoComplete>
-</section>
+<p-autoComplete [(ngModel)]="name" [suggestions]="results" (completeMethod)="search($event)" [forceSelection]="true" placeholder="Your MP, constituency, or postcode"></p-autoComplete>
 
 <section *ngIf="name">
   <img src="assets/mims.png">
@@ -19,5 +15,5 @@
 </section>
 
 <nav *ngIf="name">
-  <button pButton type="button" [routerLink]="['/pick-topic']" label="Get started!"></button>
+  <button pButton type="button" [routerLink]="['/write-card']" label="Get started!"></button>
 </nav>

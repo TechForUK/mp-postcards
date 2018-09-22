@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-pick-topic',
   templateUrl: './pick-topic.component.html',
-  styleUrls: ['./pick-topic.component.css']
+  styleUrls: ['./pick-topic.component.scss']
 })
 export class PickTopicComponent implements OnInit {
 
