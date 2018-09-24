@@ -1,12 +1,15 @@
 <p>Who is your MP?</p>
 
-<p-autoComplete [(ngModel)]="name" [suggestions]="results" (completeMethod)="search($event)" [forceSelection]="true" placeholder="Your MP, constituency, or postcode"></p-autoComplete>
+<p-autoComplete [(ngModel)]="selectedMp" [suggestions]="results" (completeMethod)="search($event)" [forceSelection]="true" field="name" placeholder="e.g. Mims Davies"></p-autoComplete>
 
-<section *ngIf="name">
+<section *ngIf="selectedMp">
+  <!--
   <img src="assets/mims.png">
-  <h2>MP Mims Davies</h2>
+  -->
+  <h2>{{selectedMp.name}}</h2>
+  <h3>{{selectedMp.constituency}}</h3>
 
-  <p>All about Mims Davies</p>
+  <p>All about {{selectedMp.name}}</p>
 
   <ul>
     <li>Supports the government</li>
@@ -14,6 +17,6 @@
   </ul>
 </section>
 
-<nav *ngIf="name">
+<nav *ngIf="selectedMp">
   <button pButton type="button" [routerLink]="['/write-card']" label="Get started!"></button>
 </nav>
