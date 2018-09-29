@@ -1,0 +1,62 @@
+section {
+    margin: auto;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.topic {
+    background-color: #f5f5f3;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px;
+    display: block;
+    flex: 0 1 30%;
+    margin: 0.5em;
+
+    div {
+        margin-top: 8em;
+        background-color: #ff1054;
+        border-radius: 0 0 12px 12px;
+        color: white;
+        padding: 0.25em;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+#nhs-topic {
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 1)), url("/assets/topics/clinic-1807543.jpg");
+}
+
+#cost-topic {
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 1)), url("/assets/topics/write-to-mp-icon-purple-stripped-matched.png");
+}
+
+#jobs-topic {
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 1)), url("/assets/topics/welder-673559.jpg");
+}
+
+#environment-topic {
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 1)), url("/assets/topics/cry-stone-walls-2451428.jpg");
+}
+
+#schools-topic {
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 1)), url("/assets/topics/write-to-mp-icon-purple-stripped-matched.png");
+}
+
+#control-topic {
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 1)), url("/assets/topics/write-to-mp-icon-purple-stripped-matched.png");
+}
+
+#safety-topic {
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 1)), url("/assets/topics/write-to-mp-icon-purple-stripped-matched.png");
+}
+
+#other-topic {
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 1)), url("/assets/topics/write-to-mp-icon-purple-stripped-matched.png");
+}
