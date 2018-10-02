@@ -18,5 +18,5 @@
 </section>
 
 <nav *ngIf="selectedMp">
-  <button pButton type="button" [routerLink]="['/write-card']" label="Get started!"></button>
+  <button pButton type="button" (click)="next()" label="Get started!"></button>
 </nav>

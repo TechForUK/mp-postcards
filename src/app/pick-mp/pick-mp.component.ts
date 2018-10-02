@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Mp } from '../models/mp';
 import { MpStoreService } from '../state/mp-store.service';
+import { PostcardStoreService } from '../state/postcard-store.service';
 
 @Component({
   selector: 'app-pick-mp',
@@ -16,11 +18,14 @@ export class PickMpComponent implements OnInit {
 
   mpData: Mp[];
 
-  constructor(private mpStore: MpStoreService) { }
+  constructor(private mpStore: MpStoreService, private postcardStore: PostcardStoreService, private router: Router) { }
 
   ngOnInit() {
     this.mpStore.mps
-        .subscribe(mpData => this.mpData = mpData);
+      .subscribe(mpData => this.mpData = mpData);
+
+    this.postcardStore.postcard
+      .subscribe(postcardData => this.selectedMp = postcardData.mp);
   }
 
   search(event) {
@@ -34,8 +39,10 @@ export class PickMpComponent implements OnInit {
       }
       return false;
     });
+  }
 
-    // this.results=[ 'Eastleigh' ];
-    // this.results = [ this.mpData[0].constituency ];
+  next() {
+    this.postcardStore.addMp(this.selectedMp);
+    this.router.navigate(['/write-card']);
   }
 }
