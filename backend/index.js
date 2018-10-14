@@ -45,6 +45,8 @@ async function sendCardAction(params) {
 //     return { padded: lines.map(l => leftPad(l, 30, ".")) }
 // }
 
-export const main = sendCardAction;
+// export const main = sendCardAction;
 
 // exports.main = sendCardAction;
+
+global.main = sendCardAction;

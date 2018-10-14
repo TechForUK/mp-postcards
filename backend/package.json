@@ -4,17 +4,13 @@
   "description": "OpenWhisk actions for GBHackOff MP Postcards prototype",
   "main": "index.js",
   "scripts": {
-    "rollup": "rollup -c",
+    "build": "webpack --config webpack.config.js --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "private": true,
   "devDependencies": {
-    "rollup": "^0.66.4",
-    "rollup-plugin-auto-external": "^2.0.0",
-    "rollup-plugin-commonjs": "^9.1.8",
-    "rollup-plugin-json": "^3.1.0",
-    "rollup-plugin-node-builtins": "^2.1.2",
-    "rollup-plugin-node-resolve": "^3.4.0"
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {
     "@sendgrid/mail": "^6.3.1"
