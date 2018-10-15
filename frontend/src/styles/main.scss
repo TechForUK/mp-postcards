@@ -11,12 +11,12 @@ body .ui-button {
   border-color: $button-colour;
 }
 
-body > nav {
+app-root > nav {
   background-color: $dark-background;
   padding: 15px;
 }
 
-body > header {
+app-root > header {
   text-align: center;
 }
 
