@@ -34,11 +34,13 @@ function lookupByName(query) {
 }
 
 async function lookupMp(params) {
-  const query = params.query;
+  const query = params.query || '';
   var postcodeLookup = false;
   var mps;
 
-  if (isPostcodeIsh(query)) {
+  if (query === '') {
+    mps = mpData;
+  } else if (isPostcodeIsh(query)) {
     postcodeLookup = true;
     mps = await lookupByPostcode(query);
   } else {

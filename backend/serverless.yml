@@ -20,11 +20,9 @@ provider:
   runtime: nodejs:8
 
 functions:
-  send:
+  lookupMp:
     handler: handler.lookupMp
     name: gbhackoff/lookup-mp
-    parameters:
-      query: ${file(./params.json):query}
 
 # extend the framework using plugins listed here:
 # https://github.com/serverless/plugins
