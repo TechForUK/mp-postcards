@@ -17,13 +17,14 @@ service: gbhackoff # NOTE: update this with your service name
 # $ npm install
 provider:
   name: openwhisk
+  runtime: nodejs:8
 
 functions:
   send:
-    handler: handler.hello
-    name: gbhackoff/email-mp
+    handler: handler.lookupMp
+    name: gbhackoff/lookup-mp
     parameters:
-      email: ${file(./params.json):email}
+      query: ${file(./params.json):query}
 
 # extend the framework using plugins listed here:
 # https://github.com/serverless/plugins
