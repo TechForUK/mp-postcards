@@ -1,15 +1,15 @@
 <p>Who is your MP?</p>
 
-<p-autoComplete [(ngModel)]="selectedMp" [suggestions]="results" (completeMethod)="search($event)" [forceSelection]="true" field="name" placeholder="e.g. Mims Davies"></p-autoComplete>
+<p-autoComplete [(ngModel)]="selectedMp" [suggestions]="results" (completeMethod)="search($event)" [forceSelection]="true" field="memberName" placeholder="e.g. Mims Davies"></p-autoComplete>
 
 <section *ngIf="selectedMp">
-  <!--
-  <img src="assets/mims.png">
-  -->
-  <h2>{{selectedMp.name}}</h2>
-  <h3>{{selectedMp.constituency}}</h3>
 
-  <p>All about {{selectedMp.name}}</p>
+  <img src="https://data.parliament.uk/membersdataplatform/services/images/MemberPhoto/{{selectedMp.memberId}}/">
+
+  <h2>{{selectedMp.fullTitle}}, {{selectedMp.partyName}}</h2>
+  <h3>{{selectedMp.constituencyName}}</h3>
+
+  <p>All about {{selectedMp.memberName}}</p>
 
   <ul>
     <li>Supports the government</li>

@@ -1,5 +1,12 @@
-export interface Mp {
-  constituency: string;
-  name: string;
-  email: string;
+export class Mp {
+  constructor(
+    public memberId: string,
+    public memberName: string,
+    public fullTitle: string,
+    public partyId: string,
+    public partyName: string,
+    public constituencyName: string,
+    public constituencyId: string,
+    public constituencyONSCode: string
+  ) {}
 }

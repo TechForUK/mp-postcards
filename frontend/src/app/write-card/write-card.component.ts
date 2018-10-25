@@ -18,7 +18,7 @@ export class WriteCardComponent implements OnInit {
 
   ngOnInit() {
     this.postcardStore.postcard
-      .subscribe(postcardData => this.mpName = postcardData.mp.name);
+      .subscribe(postcardData => this.mpName = postcardData.mp.memberName);
   }
 
 }

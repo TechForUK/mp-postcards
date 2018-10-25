@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MpStoreService } from './mp-store.service';
+import { PostcardApiService } from './postcard-api.service';
 
-describe('MpStoreService', () => {
+describe('PostcardAPIService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: MpStoreService = TestBed.get(MpStoreService);
+    const service: PostcardApiService = TestBed.get(PostcardApiService);
     expect(service).toBeTruthy();
   });
 });

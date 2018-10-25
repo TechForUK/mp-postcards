@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Mp } from '../models/mp';
-import { MpStoreService } from '../state/mp-store.service';
+import { PostcardApiService } from '../services/postcard-api.service';
 import { PostcardStoreService } from '../state/postcard-store.service';
 
 @Component({
@@ -16,14 +16,9 @@ export class PickMpComponent implements OnInit {
 
   results: Mp[];
 
-  mpData: Mp[];
-
-  constructor(private mpStore: MpStoreService, private postcardStore: PostcardStoreService, private router: Router) { }
+  constructor(private postcardApi: PostcardApiService, private postcardStore: PostcardStoreService, private router: Router) { }
 
   ngOnInit() {
-    this.mpStore.mps
-      .subscribe(mpData => this.mpData = mpData);
-
     this.postcardStore.postcard
       .subscribe(postcardData => this.selectedMp = postcardData.mp);
   }
@@ -31,14 +26,10 @@ export class PickMpComponent implements OnInit {
   search(event) {
     let query = event.query;
 
-    this.results = this.mpData.filter((mp: Mp) => {
-      if (mp.constituency.toLowerCase().includes(query.toLowerCase()) ||
-          mp.name.toLowerCase().includes(query.toLowerCase()) ||
-          mp.email.toLowerCase().includes(query.toLowerCase())) {
-        return true;
-      }
-      return false;
-    });
+    this.postcardApi.lookupMps(query)
+      .subscribe((response: any) => {
+        this.results = response.mps;
+      });
   }
 
   next() {
