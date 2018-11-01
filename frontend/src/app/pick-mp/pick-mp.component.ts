@@ -12,6 +12,8 @@ import { PostcardStoreService } from '../state/postcard-store.service';
 })
 export class PickMpComponent implements OnInit {
 
+  postcode: string;
+
   selectedMp: Mp;
 
   results: Mp[];
@@ -29,11 +31,15 @@ export class PickMpComponent implements OnInit {
     this.postcardApi.lookupMps(query)
       .subscribe((response: any) => {
         this.results = response.mps;
+        if (response.postcodeLookup) {
+          this.postcode = query;
+        }
       });
   }
 
   next() {
-    this.postcardStore.addMp(this.selectedMp);
+    this.postcardStore.addMp(this.selectedMp, this.postcode);
+    
     this.router.navigate(['/write-card']);
   }
 }

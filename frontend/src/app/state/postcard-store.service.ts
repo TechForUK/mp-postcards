@@ -12,9 +12,10 @@ export class PostcardStoreService {
 
   private cardState: Postcard = {
     mp: undefined,
-    body: '',
-    name: '',
-    email: ''
+    body: undefined,
+    name: undefined,
+    address: undefined,
+    email: undefined
   }
 
   private _postcard: BehaviorSubject<Postcard> = new BehaviorSubject(this.cardState);
@@ -23,25 +24,17 @@ export class PostcardStoreService {
 
   constructor() { }
 
-  addMp(mp: Mp) {
+  addMp(mp: Mp, postcode: string) {
     this.cardState.mp = mp;
+    this.cardState.address = postcode;
 
     this._postcard.next(this.cardState);
   }
 
-  addBody(body: string) {
+  addPostcard(body: string, name: string, address: string, email: string) {
     this.cardState.body = body;
-
-    this._postcard.next(this.cardState);
-  }
-
-  addName(name: string) {
     this.cardState.name = name;
-
-    this._postcard.next(this.cardState);
-  }
-
-  addEmail(email:string) {
+    this.cardState.address = address;
     this.cardState.email = email;
 
     this._postcard.next(this.cardState);

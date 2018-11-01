@@ -1,15 +1,16 @@
 <section>
-  <p>Dear {{mpName}},</p>
+  <p>Here are some automagically generated suggestions of what to write about (TBC). Don't forget to include a personal story.</p>
 
-  <textarea pInputTextarea [(ngModel)]="card" placeholder="Here are some automagically generated suggestions of to write about. Don't forget to include a personal story.">
+  <textarea pInputTextarea [(ngModel)]="body">
   </textarea>
 
-  <label>Yours Sincerely,
-    <input pInputText type="text" [(ngModel)]="name" placeholder="Your name">
-    <input pInputText type="email" [(ngModel)]="email" placeholder="Your email">
+  <label>
+    <input pInputText type="text" [(ngModel)]="name" placeholder="Your name"><br />
+    <input pInputText type="email" [(ngModel)]="email" placeholder="Your email"><br />
+    <input pInputText type="address" [(ngModel)]="address" placeholder="Your address">
   </label>
 </section>
 
 <nav>
-  <button pButton type="button" [routerLink]="['/card-sent']" label="Send"></button>
+  <button pButton type="button" (click)="next()" label="Send"></button>
 </nav>
