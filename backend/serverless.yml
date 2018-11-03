@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: gbhackoff # NOTE: update this with your service name
+service: gbhackoff
 
 # Remember to install project dependencies to register the provider plugin.
 # $ npm install
@@ -23,6 +23,17 @@ functions:
   lookupMp:
     handler: handler.lookupMp
     name: gbhackoff/lookup-mp
+#    annotations:
+#      web-export: true
+#    events:
+#      - http:
+#        path: gbhackoff/mps
+#        method: post
+  createDb:
+    handler: dbHandler.createDb
+    name: gbhackoff/create-db
+    parameters:
+      dbUrl: ${file(./params.json):dbUrl}
 
 # extend the framework using plugins listed here:
 # https://github.com/serverless/plugins

@@ -11,6 +11,7 @@
     "serverless-openwhisk": ">=0.13.0"
   },
   "dependencies": {
+    "@cloudant/cloudant": "^2.4.0",
     "postcodesio-client": "^0.3.4"
   }
 }
