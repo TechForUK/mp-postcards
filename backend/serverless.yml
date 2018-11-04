@@ -23,15 +23,14 @@ functions:
   lookupMp:
     handler: handler.lookupMp
     name: gbhackoff/lookup-mp
-#    annotations:
-#      web-export: true
-#    events:
-#      - http:
-#        path: gbhackoff/mps
-#        method: post
   createDb:
     handler: dbHandler.createDb
     name: gbhackoff/create-db
+    parameters:
+      dbUrl: ${file(./params.json):dbUrl}
+  submitPostcard:
+    handler: dbHandler.submitPostcard
+    name: gbhackoff/submit-postcard
     parameters:
       dbUrl: ${file(./params.json):dbUrl}
 

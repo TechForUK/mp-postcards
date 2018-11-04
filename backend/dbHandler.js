@@ -1,6 +1,7 @@
 'use strict';
 /*
  * Postcards should contain the following content:
+ *  - subject
  *  - mpEmail
  *  - message
  *  - name
@@ -12,6 +13,12 @@
  * 
  */
 var Cloudant = require('@cloudant/cloudant');
+var sanitizeHtml = require('sanitize-html');
+
+const sanitizeOptions = {
+  allowedTags: [],
+  allowedAttributes: []
+}
 
 async function createDb(params) {
   const url = params.dbUrl;
@@ -141,4 +148,52 @@ async function createDb(params) {
   return { status };
 }
 
+async function submitPostcard(params) {
+  if(!(params.subject &&
+       params.mpEmail &&
+       params.message &&
+       params.name &&
+       params.email &&
+       params.address)) {
+    return { error: 'Invalid postcard' };
+  }
+
+  const url = params.dbUrl;
+  const dbName = params.dbName || 'postcards';
+  const cloudant = Cloudant({ url, plugins: 'promises' });
+  const postcardDb = cloudant.db.use(dbName);
+
+  const status = ['Creating postcard: ' + dbName];
+
+  const subject = sanitizeHtml(params.subject, sanitizeOptions);
+  const mpEmail = sanitizeHtml(params.mpEmail, sanitizeOptions);
+  const message = sanitizeHtml(params.message, sanitizeOptions);
+  const name = sanitizeHtml(params.name, sanitizeOptions);
+  const email = sanitizeHtml(params.email, sanitizeOptions);
+  const address = sanitizeHtml(params.address, sanitizeOptions);
+  const now = new Date().getTime();
+  const date = new Date(now).toISOString();
+
+  const postcard = {
+    subject,
+    mpEmail,
+    message,
+    name,
+    email,
+    address,
+    date
+  }
+
+  try {
+    const id = '';
+    await postcardDb.insert(postcard, id);
+  } catch (err) {
+    return { error: 'Failed to create postcard: ' + err };
+  }
+
+  return { status, postcard };
+
+}
+
 exports.createDb = createDb;
+exports.submitPostcard = submitPostcard;
