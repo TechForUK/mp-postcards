@@ -2,6 +2,7 @@
 /*
  * Postcards should contain the following content:
  *  - subject
+ *  - image
  *  - mpEmail
  *  - message
  *  - name
@@ -19,6 +20,17 @@ const sanitizeOptions = {
   allowedTags: [],
   allowedAttributes: []
 }
+
+const validImages = [
+  'abacus-1866497_1920.jpg',
+  'cctv-1144366_1920.jpg',
+  'cry-stone-walls-2451428_1920.jpg',
+  'london-90782_1920.jpg',
+  'pencil-918449_1920.jpg',
+  'supermarket-2158692_1920.jpg',
+  'surgery-1807541_1920.jpg',
+  'welder-673559_1920.jpg'
+];
 
 async function createDb(params) {
   const url = params.dbUrl;
@@ -149,12 +161,18 @@ async function createDb(params) {
 }
 
 async function submitPostcard(params) {
-  if(!(params.subject &&
-       params.mpEmail &&
-       params.message &&
-       params.name &&
-       params.email &&
-       params.address)) {
+  if(!(
+        params.subject &&
+        params.image &&
+        params.mpEmail &&
+        params.message &&
+        params.name &&
+        params.email &&
+        params.address
+      ) ||
+      (params.message.length + params.name.length + params.address.length) > 450 ||
+      !validImages.includes(params.image)
+    ) {
     return { error: 'Invalid postcard' };
   }
 
@@ -166,6 +184,7 @@ async function submitPostcard(params) {
   const status = ['Creating postcard: ' + dbName];
 
   const subject = sanitizeHtml(params.subject, sanitizeOptions);
+  const image = params.image;
   const mpEmail = sanitizeHtml(params.mpEmail, sanitizeOptions);
   const message = sanitizeHtml(params.message, sanitizeOptions);
   const name = sanitizeHtml(params.name, sanitizeOptions);
@@ -176,6 +195,7 @@ async function submitPostcard(params) {
 
   const postcard = {
     subject,
+    image,
     mpEmail,
     message,
     name,
