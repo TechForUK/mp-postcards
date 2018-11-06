@@ -55,7 +55,7 @@ async function createDb(params) {
       mp_view: {
         map: function (doc) {
           if (doc.mpEmail) {
-            emit(doc.mpEmail,doc);
+            emit(doc.mpEmail, null);
           }
         }.toString(),
         reduce: '_sum'
@@ -77,7 +77,7 @@ async function createDb(params) {
       constituent_view: {
         map: function (doc) {
           if (doc.email) {
-            emit(doc.email,doc);
+            emit(doc.email, null);
           }
         }.toString(),
         reduce: '_sum'
@@ -99,7 +99,7 @@ async function createDb(params) {
       pending_view: {
         map: function (doc) {
           if (!doc.status) {
-            emit(doc.date,doc);
+            emit(doc.date, null);
           }
         }.toString(),
         reduce: '_sum'
@@ -121,7 +121,7 @@ async function createDb(params) {
       approved_view: {
         map: function (doc) {
           if (doc.status === 'approved') {
-            emit(doc.date,doc);
+            emit(doc.date, null);
           }
         }.toString(),
         reduce: '_sum'
@@ -143,7 +143,7 @@ async function createDb(params) {
       sent_view: {
         map: function (doc) {
           if (doc.status === 'sent') {
-            emit(doc.date,doc);
+            emit(doc.date, null);
           }
         }.toString(),
         reduce: '_sum'
