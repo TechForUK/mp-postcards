@@ -10,7 +10,7 @@
  *  - address
  *  - date
  * 
- * Plus a 'status' of either, 'rejected', 'approved', or 'sent' (no status when first submitted)
+ * Plus a 'status' of either, 'rejected', 'approved', 'duplicate', or 'sent' (no status when first submitted)
  * 
  */
 var Cloudant = require('@cloudant/cloudant');
@@ -166,10 +166,12 @@ async function createDb(params) {
         const reqBody = JSON.parse(req.body);
         const newStatus = reqBody.status;
 
-        if(!(newStatus === 'approved' || newStatus === 'rejected' || newStatus === 'sent')) {
+        if(!(newStatus === 'approved' || newStatus === 'rejected' || newStatus === 'duplicate' || newStatus === 'sent')) {
           return [null, {code: 400, body: 'Invalid status'}];
         } else if(doc.status && doc.status === newStatus) {
           return [null, 'Status update not required'];
+        } else if(doc.status && doc.status === 'sent') {
+          return [null, {code: 400, body: 'Cannot change status'}];
         }
 
         doc.status = newStatus;
