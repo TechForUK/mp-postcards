@@ -157,6 +157,33 @@ async function createDb(params) {
     status.push('Failed to create sent view: ' + err);
   }
 
+  status.push('Creating update functions...');
+
+  const updateFunctions = {
+    _id: '_design/update_functions',
+    updates: {
+      update_status: function (doc, req) {
+        const reqBody = JSON.parse(req.body);
+        const newStatus = reqBody.status;
+
+        if(!(newStatus === 'approved' || newStatus === 'rejected' || newStatus === 'sent')) {
+          return [null, {code: 400, body: 'Invalid status'}];
+        } else if(doc.status && doc.status === newStatus) {
+          return [null, 'Status update not required'];
+        }
+
+        doc.status = newStatus;
+        return [doc, 'Status updated'];
+      }.toString(),
+    }
+  };
+
+  try {
+    await postcardDb.insert(updateFunctions);
+  } catch (err) {
+    status.push('Failed to create update functions: ' + err);
+  }
+
   return { status };
 }
 
