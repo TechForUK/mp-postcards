@@ -33,6 +33,14 @@ functions:
     name: gbhackoff/submit-postcard
     parameters:
       dbUrl: ${file(./params.json):dbUrl}
+  sendPostcards:
+    handler: dbHandler.sendPostcards
+    name: gbhackoff/send-postcards
+    parameters:
+      dbUrl: ${file(./params.json):dbUrl}
+      sendgridApiKey: ${file(./params.json):sendgridApiKey}
+      sendgridTemplateId: ${file(./params.json):sendgridTemplateId}
+      sendgridEmail: ${file(./params.json):sendgridEmail}
 
 # extend the framework using plugins listed here:
 # https://github.com/serverless/plugins

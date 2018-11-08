@@ -13,8 +13,9 @@
  * Plus a 'status' of either, 'rejected', 'approved', 'duplicate', or 'sent' (no status when first submitted)
  * 
  */
-var Cloudant = require('@cloudant/cloudant');
-var sanitizeHtml = require('sanitize-html');
+const Cloudant = require('@cloudant/cloudant');
+const sanitizeHtml = require('sanitize-html');
+const sgMail = require('@sendgrid/mail');
 
 const sanitizeOptions = {
   allowedTags: [],
@@ -57,8 +58,7 @@ async function createDb(params) {
           if (doc.mpEmail) {
             emit(doc.mpEmail, null);
           }
-        }.toString(),
-        reduce: '_sum'
+        }.toString()
       }
     }
   };
@@ -79,8 +79,7 @@ async function createDb(params) {
           if (doc.email) {
             emit(doc.email, null);
           }
-        }.toString(),
-        reduce: '_sum'
+        }.toString()
       }
     }
   };
@@ -101,8 +100,7 @@ async function createDb(params) {
           if (!doc.status) {
             emit(doc.date, null);
           }
-        }.toString(),
-        reduce: '_sum'
+        }.toString()
       }
     }
   };
@@ -123,8 +121,7 @@ async function createDb(params) {
           if (doc.status === 'approved') {
             emit(doc.date, null);
           }
-        }.toString(),
-        reduce: '_sum'
+        }.toString()
       }
     }
   };
@@ -145,8 +142,7 @@ async function createDb(params) {
           if (doc.status === 'sent') {
             emit(doc.date, null);
           }
-        }.toString(),
-        reduce: '_sum'
+        }.toString()
       }
     }
   };
@@ -170,12 +166,14 @@ async function createDb(params) {
           return [null, {code: 400, body: 'Invalid status'}];
         } else if(doc.status && doc.status === newStatus) {
           return [null, 'Status update not required'];
+        } else if(newStatus === 'sent' && doc.status && doc.status !== 'approved') {
+          return [null, {code: 400, body: 'Not approved for sending'}];
         } else if(doc.status && doc.status === 'sent') {
           return [null, {code: 400, body: 'Cannot change status'}];
         }
 
         doc.status = newStatus;
-        return [doc, 'Status updated'];
+        return [doc, {json: {postcard: doc}}];
       }.toString(),
     }
   };
@@ -241,8 +239,78 @@ async function submitPostcard(params) {
   }
 
   return { status, postcard };
+}
 
+async function sendPostcards(params) {
+  const url = params.dbUrl;
+  const dbName = params.dbName || 'postcards';
+  const sendgridApiKey = params.sendgridApiKey;
+  const sendgridTemplateId = params.sendgridTemplateId;
+  const sendgridEmail = params.sendgridEmail;
+
+  const status = ['Fetching postcards: ' + dbName];
+
+  const cloudant = Cloudant({ url, plugins: 'promises' });
+  const postcardDb = cloudant.db.use(dbName);
+
+  try {
+    const searchResult = await postcardDb.view('approved_view', 'approved_view', {include_docs: false});
+  
+    if (searchResult.total_rows && searchResult.rows) {
+      status.push('Postcards to send: ' + searchResult.total_rows);
+
+      sgMail.setApiKey(sendgridApiKey);
+      for (var i = 0; i < searchResult.rows.length; i++) {
+        const postcardId = searchResult.rows[i].id;
+
+        const sendStatus = await sendPostcard(postcardDb, postcardId, sendgridTemplateId, sendgridEmail);
+        Array.prototype.push.apply(status, sendStatus);
+      }
+    }
+  } catch (err) {
+    status.push('Failed to send postcards: ' + err);
+  }
+
+  return { status };
 }
 
 exports.createDb = createDb;
 exports.submitPostcard = submitPostcard;
+exports.sendPostcards = sendPostcards;
+
+async function sendPostcard(postcardDb, postcardId, sendgridTemplateId, sendgridEmail) {
+  const status = [];
+
+  try {
+    const updateResult = await postcardDb.atomic('update_functions', 'update_status', postcardId, {status: 'sent'});
+    if (!updateResult.postcard) {
+      status.push('Could not update postcard for sending: ' + JSON.stringify(updateResult));
+    } else {
+      const postcard = updateResult.postcard;
+      status.push('Sending postcard: ' + postcardId);
+
+      const msg = {
+        to: postcard.mpEmail,
+        from: sendgridEmail,
+        subject: postcard.subject,
+        templateId: sendgridTemplateId,
+        dynamic_template_data: {
+          subject: postcard.subject,
+          image: postcard.image,
+          mpEmail: postcard.mpEmail,
+          message: postcard.message,
+          name: postcard.name,
+          email: postcard.email,
+          address: postcard.address
+        },
+      };
+      sgMail.send(msg);
+  
+      status.push('Postcard sent');
+    }
+  } catch (err) {
+    status.push('Failed to send postcard: ' + err);
+  }
+
+  return status;
+}
