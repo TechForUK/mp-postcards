@@ -10,8 +10,9 @@ import { PostcardStoreService } from '../state/postcard-store.service';
 })
 export class WriteCardComponent implements OnInit {
 
+  example: string;
   mpName: string;
-  body: string;
+  message: string;
   name: string;
   address: string;
   email: string;
@@ -21,24 +22,25 @@ export class WriteCardComponent implements OnInit {
   ngOnInit() {
     this.postcardStore.postcard
       .subscribe(postcardData => {
+        if (postcardData.topic) {
+          this.example = postcardData.topic.example;
+        }
         if (postcardData.mp) {
           this.mpName = postcardData.mp.memberName;
         }
-        this.body = postcardData.body;
-        if (!this.body) {
-          this.body = 'Dear ' + this.mpName + ',\n\n\n\nYours Sincerely,'
+        this.message = postcardData.message;
+        if (!this.message) {
+          this.message = 'Dear ' + this.mpName
         }
         this.name = postcardData.name;
         this.address = postcardData.address;
         this.email = postcardData.email;
-        console.log('MP', this.mpName);
-        console.log('ADDRESS', this.address);
       });
   }
 
   next() {
-    this.postcardStore.addPostcard(this.body, this.name, this.address, this.email);
+    this.postcardStore.addPostcard(this.message, this.name, this.address, this.email);
     
-    this.router.navigate(['/card-sent']);
+    this.router.navigate(['/confirm-send']);
   }
 }

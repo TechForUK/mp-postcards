@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Mp } from '../models/mp';
 import { Postcard } from '../models/postcard';
+import { Topic } from '../models/topic';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class PostcardStoreService {
 
   private cardState: Postcard = {
     mp: undefined,
-    body: undefined,
+    topic: undefined,
+    message: undefined,
     name: undefined,
     address: undefined,
     email: undefined
@@ -31,8 +33,14 @@ export class PostcardStoreService {
     this._postcard.next(this.cardState);
   }
 
-  addPostcard(body: string, name: string, address: string, email: string) {
-    this.cardState.body = body;
+  addTopic(topic: Topic) {
+    this.cardState.topic = topic;
+
+    this._postcard.next(this.cardState);
+  }
+
+  addPostcard(message: string, name: string, address: string, email: string) {
+    this.cardState.message = message;
     this.cardState.name = name;
     this.cardState.address = address;
     this.cardState.email = email;

@@ -1,7 +1,16 @@
-<p>
-  confirm-send works!
-</p>
+<section class="preview">
+  <div>
+    <img src="/assets/topics/{{image}}" />
+  </div>
+
+  <div>
+    <p>{{message}}</p>
+
+    <p>{{name}}</p>
+    <p>{{address}}</p>
+  </div>
+</section>
 
 <nav>
-  <a routerLink="/card-sent">Start</a>
+  <button pButton type="button" [disabled]="postcardSending" (click)="send()" label="Send"></button>
 </nav>

@@ -1,7 +1,11 @@
 <section>
-  <p>Here are some automagically generated suggestions of what to write about (TBC). Don't forget to include a personal story.</p>
+  <p>Here's an example to get you started:</p>
 
-  <textarea pInputTextarea [(ngModel)]="body">
+  <p>"{{example}}"</p>
+  
+  <p>Remember to include your own personal story.</p>
+
+  <textarea pInputTextarea [(ngModel)]="message">
   </textarea>
 
   <label>
@@ -12,5 +16,5 @@
 </section>
 
 <nav>
-  <button pButton type="button" (click)="next()" label="Send"></button>
+  <button pButton type="button" (click)="next()" label="Next"></button>
 </nav>

@@ -1,6 +1,7 @@
 export class Mp {
   constructor(
     public memberId: string,
+    public memberEmail: string,
     public memberName: string,
     public fullTitle: string,
     public partyId: string,

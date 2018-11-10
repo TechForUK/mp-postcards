@@ -2,51 +2,9 @@
 
 <section>
   <nav>
-    <a class="topic" id="nhs-topic" [routerLink]="['/pick-mp']">
+    <a *ngFor="let topic of topics" class="topic" id="{{topic.id}}" (click)="onSelect(topic)">
       <div>
-        NHS
-      </div>
-    </a>
-
-    <a class="topic" id="cost-topic" [routerLink]="['/pick-mp']">
-      <div>
-        Cost of living
-      </div>
-    </a>
-
-    <a class="topic" id="jobs-topic" [routerLink]="['/pick-mp']">
-      <div>
-        Jobs
-      </div>
-    </a>
-
-    <a class="topic" id="environment-topic" [routerLink]="['/pick-mp']">
-      <div>
-        Environment
-      </div>
-    </a>
-
-    <a class="topic" id="schools-topic" [routerLink]="['/pick-mp']">
-      <div>
-        Schools and education
-      </div>
-    </a>
-
-    <a class="topic" id="control-topic" [routerLink]="['/pick-mp']">
-      <div>
-        Having our say
-      </div>
-    </a>
-
-    <a class="topic" id="safety-topic" [routerLink]="['/pick-mp']">
-      <div>
-        Safety and security
-      </div>
-    </a>
-
-    <a class="topic" id="other-topic" [routerLink]="['/pick-mp']">
-      <div>
-        Other
+        {{topic.name}}
       </div>
     </a>
   </nav>
