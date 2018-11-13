@@ -5,16 +5,16 @@
   
   <p>Remember to include your own personal story.</p>
 
-  <textarea pInputTextarea [(ngModel)]="message">
+  <textarea [(ngModel)]="message">
   </textarea>
 
   <label>
-    <input pInputText type="text" [(ngModel)]="name" placeholder="Your name"><br />
-    <input pInputText type="email" [(ngModel)]="email" placeholder="Your email"><br />
-    <input pInputText type="address" [(ngModel)]="address" placeholder="Your address">
+    <input type="text" [(ngModel)]="name" placeholder="Your name"><br />
+    <input type="email" [(ngModel)]="email" placeholder="Your email"><br />
+    <input type="address" [(ngModel)]="address" placeholder="Your address">
   </label>
 </section>
 
 <nav>
-  <button pButton type="button" (click)="next()" label="Next"></button>
+  <button type="button" (click)="next()">Next</button>
 </nav>

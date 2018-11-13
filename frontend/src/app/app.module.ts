@@ -4,12 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { AutoCompleteModule } from 'primeng/autocomplete';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-import { InputTextModule } from 'primeng/inputtext';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PickMpComponent } from './pick-mp/pick-mp.component';
@@ -33,11 +27,6 @@ import { ConfirmMpComponent } from './confirm-mp/confirm-mp.component';
   ],
   imports: [
     FormsModule,
-    AutoCompleteModule,
-    ButtonModule,
-    CardModule,
-    InputTextModule,
-    InputTextareaModule,
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,

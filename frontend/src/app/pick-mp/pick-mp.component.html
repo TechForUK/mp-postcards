@@ -1,22 +1,15 @@
-<p>Who is your MP?</p>
+<p>Members of Parliament will only respond to their own constituents. Search for your MP by name, constituency or postcode:</p>
 
-<p-autoComplete [(ngModel)]="selectedMp" [suggestions]="results" (completeMethod)="search($event)" [forceSelection]="true" field="memberName" placeholder="e.g. Mims Davies"></p-autoComplete>
+<input (keyup)="query$.next($event.target.value)" placeholder="e.g. SW1A 0AA">
 
-<section *ngIf="selectedMp">
-
-  <img src="https://data.parliament.uk/membersdataplatform/services/images/MemberPhoto/{{selectedMp.memberId}}/">
-
-  <h2>{{selectedMp.fullTitle}}, {{selectedMp.partyName}}</h2>
-  <h3>{{selectedMp.constituencyName}}</h3>
-
-  <p>All about {{selectedMp.memberName}}</p>
-
-  <ul>
-    <li>Supports the government</li>
-    <li>Does not support Brew for Europe</li>
-  </ul>
+<section *ngIf="results.length > 0">
+  <nav>
+    <a *ngFor="let mp of results | slice:0:9" class="mp" (click)="onSelect(mp)">
+      <div>
+        <p>{{mp.constituencyName}}</p>
+        <img src="https://data.parliament.uk/membersdataplatform/services/images/MemberPhoto/{{mp.memberId}}/">
+        <p>{{mp.fullTitle}} ({{mp.partyName}})</p>
+      </div>
+    </a>
+  </nav>
 </section>
-
-<nav *ngIf="selectedMp">
-  <button pButton type="button" (click)="next()" label="Get started!"></button>
-</nav>

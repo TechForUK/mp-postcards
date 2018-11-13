@@ -6,9 +6,11 @@ body {
   margin: 0;
 }
 
-body .ui-button {
+body button {
   background-color: $button-colour;
   border-color: $button-colour;
+  color: white;
+  cursor: pointer;
 }
 
 app-root > nav {
