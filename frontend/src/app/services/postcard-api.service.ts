@@ -26,7 +26,7 @@ export class PostcardApiService {
             mps: <Mp[]>response.mps.map(item => {
               return new Mp(
                 item.member_id,
-                'mp@example.org',
+                item.member_email,
                 item.member_name,
                 item.full_title,
                 item.party_id,
