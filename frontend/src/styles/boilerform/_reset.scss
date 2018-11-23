@@ -1,0 +1,49 @@
+@include namespace(true) {
+    
+    // Set base pixel size for REM units to work off
+    font-size: $base-font-size;
+    
+    // Set the base color 
+    color: color(base, text);
+
+    // Set base border color
+    border-color: color(base, border);
+
+    // Box sizing border-box FTW
+    &,
+    & * {
+        box-sizing: border-box;
+    }
+    
+    // All field elements
+    [class*="-field"] {
+        margin: 0;
+        display: inline-block;
+        vertical-align: middle;
+        white-space: normal;
+        line-height: 1.1;
+        font-family: $base-font-family;
+    }
+
+    // All decorative elements 
+    [class*="decor"] {
+        line-height: 0;
+    }
+
+    // Turn off the recent search in WebKit.
+    ::-webkit-search-decoration {
+        display: none;
+    }
+
+    // Normalise form field line-height in WebKit
+    input::-webkit-input-placeholder,
+    textarea::-webkit-input-placeholder,
+    select::-webkit-input-placeholder {
+        line-height: normal;
+    }
+
+    // Make a search box appear like a text box
+    input[type="search"] {
+        -webkit-appearance: textfield;
+    }
+}

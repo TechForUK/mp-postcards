@@ -1,0 +1,14 @@
+/*------------------------------------*\
+    FORM LAYOUT
+
+    The main form layout that gives
+    you rythm, alignment and flow
+\*------------------------------------*/
+$namespace: ".l-form";
+
+#{ $namespace } {
+
+    @include namespace() {
+
+    }
+}

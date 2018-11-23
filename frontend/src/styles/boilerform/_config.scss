@@ -1,0 +1,41 @@
+// Colors
+$colors: (
+    base: (
+        text: #141414,
+        border: #cccccc 
+    ),
+    button: (
+        background: #ff1054,
+        background--hover:#4d5bcb,
+        text: #ffffff
+    ),
+    check: (
+        decor: #eeeeee,
+        decor--active: #aaaaaa,
+        decor__inner: #888888
+    ),
+    field: (
+        background: #ffffff
+    ),
+    state: (
+        error: #cf0b00
+    )
+);
+
+// Metrics
+$button-padding: 11px 25px 10px 25px;
+$check-field-decor-size: 20px;
+$check-field-flow: 10px;
+$check-field-label-padding: 3px 0 0 10px;
+$input-field-vertical-padding: 10px;
+$input-field-horizontal-padding: 15px;
+$input-field-padding: #{ $input-field-vertical-padding + 1 } $input-field-horizontal-padding $input-field-vertical-padding $input-field-horizontal-padding;
+$multiline-min-height: 80px;
+
+// Decorative
+$border-radius: 2px;
+
+// Typography 
+$base-font-family: sans-serif;
+$base-font-size: 16px;
+$input-field-font-size: 1rem;

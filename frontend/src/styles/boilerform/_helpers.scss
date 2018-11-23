@@ -1,0 +1,21 @@
+// All input fields share these styles. Also includes select menus
+%c-field-shared-inputs {
+    background: color(field, background);
+    border: 1px solid color(base, border);
+    padding: $input-field-padding;
+    border-radius: $border-radius;
+    font-size: $input-field-font-size;
+}
+
+// Visually hide an element, but allow a screen-reader to see it
+%visually-hidden {
+    display: block;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(1px);
+    white-space: nowrap;
+    position: absolute;
+}

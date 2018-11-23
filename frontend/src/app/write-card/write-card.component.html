@@ -1,20 +1,31 @@
-<section>
+<section class="boilerform">
   <p>Here's an example to get you started:</p>
 
   <p>"{{example}}"</p>
-  
+
   <p>Remember to include your own personal story.</p>
 
-  <textarea [(ngModel)]="message">
+  <textarea class="c-input-field c-input-field--multiline" [(ngModel)]="message">
   </textarea>
 
-  <label>
-    <input type="text" [(ngModel)]="name" placeholder="Your name"><br />
-    <input type="email" [(ngModel)]="email" placeholder="Your email"><br />
-    <input type="address" [(ngModel)]="address" placeholder="Your address">
-  </label>
+  <p>
+    <label for="name" class="c-label">Name</label>
+    <input name="name" type="text" class="c-input-field" [(ngModel)]="name" placeholder="Your name">
+  </p>
+
+  <p>
+    <label for="email" class="c-label">Email</label>
+    <input name="email" type="email" autocapitalize="none" autocorrect="off" class="c-input-field" [(ngModel)]="email"
+      placeholder="e.g. name@example.com"><br />
+  </p>
+
+  <p>
+    <label for="address" class="c-label">Address</label>
+    <input name="address" type="address" class="c-input-field" [(ngModel)]="address" placeholder="Your postal address">
+  </p>
+
 </section>
 
-<nav>
-  <button type="button" (click)="next()">Next</button>
+<nav class="boilerform">
+  <button type="button" class="c-button" (click)="next()">Next</button>
 </nav>

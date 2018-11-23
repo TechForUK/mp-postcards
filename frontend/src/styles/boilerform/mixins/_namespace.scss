@@ -1,0 +1,20 @@
+/*------------------------------------*\
+    NAMESPACE
+
+    This mixin encapsulates CSS within 
+    a namespace to prevent outside
+    conflicts as much as possible.
+\*------------------------------------*/
+@mixin namespace($isRoot: false) {
+
+    @if ($isRoot == true) {
+        .boilerform {
+            @content;
+        }
+    }
+    @else {
+        .boilerform & {
+            @content;
+        }
+    }
+}
