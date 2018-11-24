@@ -13,6 +13,7 @@ import { ConfirmSendComponent } from './confirm-send/confirm-send.component';
 import { CardSentComponent } from './card-sent/card-sent.component';
 import { WriteCardComponent } from './write-card/write-card.component';
 import { ConfirmMpComponent } from './confirm-mp/confirm-mp.component';
+import { PostcardLengthValidatorDirective } from './shared/postcard-length-validator.directive';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ConfirmMpComponent } from './confirm-mp/confirm-mp.component';
     ConfirmSendComponent,
     CardSentComponent,
     WriteCardComponent,
-    ConfirmMpComponent
+    ConfirmMpComponent,
+    PostcardLengthValidatorDirective
   ],
   imports: [
     FormsModule,

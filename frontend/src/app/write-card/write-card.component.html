@@ -1,31 +1,31 @@
-<section class="boilerform">
+<form class="boilerform" #postcardForm="ngForm" (ngSubmit)="onSubmitPostcard()" appPostcardLengthValidator>
   <p>Here's an example to get you started:</p>
 
   <p>"{{example}}"</p>
 
   <p>Remember to include your own personal story.</p>
 
-  <textarea class="c-input-field c-input-field--multiline" [(ngModel)]="message">
+  <textarea required name="message" id="message" class="c-input-field c-input-field--multiline" [(ngModel)]="message" [ngClass]="{'is-error': postcardForm.errors?.postcardLength && (postcardForm.touched || postcardForm.dirty)}">
   </textarea>
 
   <p>
     <label for="name" class="c-label">Name</label>
-    <input name="name" type="text" class="c-input-field" [(ngModel)]="name" placeholder="Your name">
+    <input required name="name" id="name" type="text" class="c-input-field" [(ngModel)]="name" [ngClass]="{'is-error': postcardForm.errors?.postcardLength && (postcardForm.touched || postcardForm.dirty)}" placeholder="Your name">
   </p>
 
   <p>
     <label for="email" class="c-label">Email</label>
-    <input name="email" type="email" autocapitalize="none" autocorrect="off" class="c-input-field" [(ngModel)]="email"
-      placeholder="e.g. name@example.com"><br />
+    <input required name="email" id="email" type="email" autocapitalize="none" autocorrect="off" class="c-input-field" [(ngModel)]="email" placeholder="Your email">
   </p>
 
   <p>
     <label for="address" class="c-label">Address</label>
-    <input name="address" type="address" class="c-input-field" [(ngModel)]="address" placeholder="Your postal address">
+    <input required name="address" id="address" type="address" class="c-input-field" [(ngModel)]="address" [ngClass]="{'is-error': postcardForm.errors?.postcardLength && (postcardForm.touched || postcardForm.dirty)}" placeholder="Your postal address">
   </p>
 
-</section>
+  <p *ngIf="postcardForm.errors?.postcardLength && (postcardForm.touched || postcardForm.dirty)">
+    Postcards can be a maximum of 450 characters (not including your email address)
+  </p>
 
-<nav class="boilerform">
-  <button type="button" class="c-button" (click)="next()">Next</button>
-</nav>
+  <button type="submit" class="c-button" [disabled]="!postcardForm.form.valid">Next</button>
+</form>
