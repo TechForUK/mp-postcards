@@ -2,7 +2,7 @@
   <p>Members of Parliament will only respond to their own constituents. Search for your MP by name, constituency or
     postcode:</p>
 
-  <input type="search" autocorrect="off" class="c-input-field" (keyup)="query$.next($event.target.value)" placeholder="e.g. SW1A 0AA">
+  <input type="search" autocorrect="off" class="c-input-field" (keyup)="query$.next($event.target.value)" placeholder="e.g. SW1A 0AA">&nbsp;<span *ngIf="searching" class="spinner">&nbsp;</span>
 </section>
 
 <nav *ngIf="results.length > 0">

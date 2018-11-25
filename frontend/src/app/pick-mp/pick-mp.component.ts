@@ -15,6 +15,7 @@ import { PostcardStoreService } from '../state/postcard-store.service';
 })
 export class PickMpComponent implements OnInit {
 
+  searching: boolean = false;
   postcode: string;
   results: Mp[] =  [];
 
@@ -23,6 +24,7 @@ export class PickMpComponent implements OnInit {
   constructor(private postcardApi: PostcardApiService, private postcardStore: PostcardStoreService, private router: Router) {
     this.search(this.query$)
       .subscribe(results => {
+        this.searching = false;
         this.results = results.mps;
       });
   }
@@ -40,7 +42,10 @@ export class PickMpComponent implements OnInit {
     return query.pipe(
       debounceTime(400),
       distinctUntilChanged(),
-      switchMap(query => this.postcardApi.lookupMps(query)));
+      switchMap(query => {
+        this.searching = true;
+        return this.postcardApi.lookupMps(query)
+      }));
   }
 
   onSelect(mp: Mp): void {
