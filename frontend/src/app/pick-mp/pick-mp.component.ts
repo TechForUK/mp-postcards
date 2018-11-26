@@ -18,6 +18,7 @@ export class PickMpComponent implements OnInit {
   searching: boolean = false;
   postcode: string;
   results: Mp[] =  [];
+  postcardImage: string;
 
   query$ = new Subject<string>();
 
@@ -34,6 +35,9 @@ export class PickMpComponent implements OnInit {
       .subscribe(postcardData => {
         if (postcardData.mp) {
           this.results = [ postcardData.mp ];
+        }
+        if (postcardData.topic) {
+          this.postcardImage = postcardData.topic.image;
         }
       });
   }

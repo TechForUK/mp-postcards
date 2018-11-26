@@ -6,11 +6,11 @@
 </section>
 
 <nav *ngIf="results.length > 0">
-  <a *ngFor="let mp of results | slice:0:9" class="mp" (click)="onSelect(mp)">
-    <div>
-      <p>{{mp.constituencyName}}</p>
-      <img src="https://data.parliament.uk/membersdataplatform/services/images/MemberPhoto/{{mp.memberId}}/">
-      <p>{{mp.fullTitle}} ({{mp.partyName}})</p>
+  <a *ngFor="let mp of results | slice:0:9" class="mp-card" (click)="onSelect(mp)" [ngStyle]="{'background-image': 'linear-gradient(rgba(255, 255, 255, 0.9) 40%, rgba(255, 255, 255, 1)), url(/assets/topics/' + postcardImage + ')'}">
+    <div class="mp-details" [ngStyle]="{'background-image': 'linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.8)), url(https://data.parliament.uk/membersdataplatform/services/images/MemberPhoto/' + mp.memberId + '/)'}">
+      <p class="name">{{mp.fullTitle}}</p>
+      <p class="party">{{mp.partyName}}</p>
     </div>
+    <div class="constituency">{{mp.constituencyName}}</div>
   </a>
 </nav>
