@@ -1,11 +1,8 @@
 <p>Choose a topic that affects you personally</p>
 
 <section>
-  <nav>
-    <a *ngFor="let topic of topics" class="topic" id="{{topic.id}}" (click)="onSelect(topic)">
-      <div>
-        {{topic.name}}
-      </div>
-    </a>
+  <nav class="boilerform">
+    <button *ngFor="let topic of topics" type="button" class="c-button topic-button" [ngStyle]="{'background-image': 'url(/assets/topics/' + topic.image + ')'}" (click)="onSelect(topic)">{{topic.name}}</button>
+    <span class="topic-spacer">&nbsp;</span>
   </nav>
 </section>

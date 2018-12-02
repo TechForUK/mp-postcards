@@ -57,7 +57,7 @@ const TOPICS = [
   {
     id: 'other-topic',
     image: 'pencil-918449_1920.jpg',
-    name: 'Other',
+    name: 'Something else',
     description: 'Brexit postcard',
     example: 'I was in hospital earlier this year for an operation on my foot. One amazing nurse who looked after me was from Portugal, but said he\'s thinking about returning home because he doesn\'t know if he\'ll be able to work in the UK after we leave the EU. This worries me because we already don\'t have enough nurses.'
   }

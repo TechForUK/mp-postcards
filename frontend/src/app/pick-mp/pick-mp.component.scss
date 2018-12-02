@@ -9,36 +9,31 @@ section {
 nav {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
-.mp-card {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
-    border-radius: 12px;
+.mp-result, .mp-spacer {
+    width: 36em;
+    margin: 1em;
+}
+
+.mp-result {
+    background-color: $tertiary-background;
     display: flex;
-    flex-direction: column;
-    flex: 0 1 47%;
-    margin: 0.5em;
-    text-align: center;
-    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    img {
+        height: 14em;
+    }
 
     .mp-details {
         text-align: left;
-        border-top-left-radius: 12px;
-        background-size: contain;
-        height: 8em;
-        padding-left: 8.5em;
-    }
+        padding: 1em;
 
-    .constituency {
-        background-color: #ff1054;
-        border-radius: 0 0 12px 12px;
-        color: white;
-        padding: 0.3em;
-        text-align: center;
-        width: 100%;
+        .name {
+            display: table;
+            font-weight: bold;
+        }
     }
 }

@@ -6,11 +6,14 @@
 </section>
 
 <nav *ngIf="results.length > 0">
-  <a *ngFor="let mp of results | slice:0:9" class="mp-card" (click)="onSelect(mp)" [ngStyle]="{'background-image': 'linear-gradient(rgba(255, 255, 255, 0.9) 40%, rgba(255, 255, 255, 1)), url(/assets/topics/' + postcardImage + ')'}">
-    <div class="mp-details" [ngStyle]="{'background-image': 'linear-gradient(rgba(255, 255, 255, 0) 80%, rgba(255, 255, 255, 0.8)), url(https://data.parliament.uk/membersdataplatform/services/images/MemberPhoto/' + mp.memberId + '/)'}">
-      <p class="name">{{mp.fullTitle}}</p>
-      <p class="party">{{mp.partyName}}</p>
+  <div *ngFor="let mp of results | slice:0:9" class="mp-result">
+    <img src="https://data.parliament.uk/membersdataplatform/services/images/MemberPhoto/{{mp.memberId}}/" />
+    <div class="mp-details boilerform">
+      <h2>{{mp.constituencyName}}</h2>
+      <p>Your MP is <span class="name">{{mp.memberName}}</span> a <span class="party">{{mp.partyName}}</span> MP</p>
+      <button type="button" class="c-button" (click)="onSelect(mp)">Write to {{mp.memberName}}</button>
     </div>
-    <div class="constituency">{{mp.constituencyName}}</div>
-  </a>
+  </div>
+
+  <span class="mp-spacer">&nbsp;</span>
 </nav>

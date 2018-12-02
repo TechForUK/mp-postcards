@@ -1,3 +1,5 @@
+@import "../colours.scss";
+
 // Colors
 $colors: (
     base: (
@@ -5,9 +7,9 @@ $colors: (
         border: #cccccc 
     ),
     button: (
-        background: #ff1054,
-        background--hover:#4d5bcb,
-        background--disabled:#888888,
+        background: $primary-background,
+        background--hover: $secondary-background,
+        background--disabled: $tertiary-background,
         text: #ffffff
     ),
     check: (

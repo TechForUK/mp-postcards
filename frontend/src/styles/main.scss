@@ -9,19 +9,25 @@ body {
 }
 
 body button {
-  background-color: $button-colour;
-  border-color: $button-colour;
+  background-color: $primary-background;
+  border-color: $primary-background;
   color: white;
   cursor: pointer;
 }
 
-app-root > nav {
-  background-color: $dark-background;
-  padding: 15px;
-}
-
-app-root > header {
+app-root > header.site {
+  background-color: $secondary-background;
   text-align: center;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 2em;
+
+  h1 {
+    border: 2px solid $primary-background;
+    padding: 0.5em 2em 0.5em 2em;
+    border-radius: 1.25em;
+  }
 }
 
 main {
