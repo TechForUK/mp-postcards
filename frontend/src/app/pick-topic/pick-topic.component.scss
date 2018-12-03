@@ -16,7 +16,6 @@ nav {
     background-size: cover;
     background-repeat: no-repeat;
     background-color: $primary-background;
-    border: 2px solid white;
 }
 
 .topic-button, .topic-button:hover, .topic-button:focus, .topic-spacer {
@@ -25,17 +24,10 @@ nav {
     margin: 1rem;
 }
 
-.topic-button:hover {
+.topic-button:hover, .topic-button:focus {
     background-blend-mode: darken;
+    opacity: 0.8;
     background-size: cover;
     background-repeat: no-repeat;
     background-color: $primary-background;
-    border: 2px solid white;
-}
-
-.topic-button:focus {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: $secondary-background;
-    border: 2px solid $primary-background;
 }
