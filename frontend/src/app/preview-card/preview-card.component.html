@@ -1,0 +1,28 @@
+<section class="postcard-container">
+  <article class="postcard-preview">
+    <header>
+      <p>MP Postcard</p>
+    </header>
+    <section class="postcard-content">
+      <div class="postcard-message">
+        <p>{{postcard.message}}</p>
+  
+        <p>{{postcard.name}}</p>
+        <p>{{postcard.address}}</p>
+      </div>
+      <address>
+        <p>{{postcard.mp?.fullTitle}}</p>
+        <p>(MP for {{postcard.mp?.constituencyName}})</p>
+  
+        <p>House of Commons</p>
+        <p>London</p>
+        <p>SW1A 0AA</p>
+        <p>United Kingdom</p>
+      </address>
+    </section>
+  </article>
+</section>
+
+<nav class="boilerform">
+  <button type="button" class="c-button" [disabled]="postcardSending" (click)="send()">Send</button>
+</nav>

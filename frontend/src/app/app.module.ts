@@ -8,11 +8,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PickMpComponent } from './pick-mp/pick-mp.component';
 import { PickTopicComponent } from './pick-topic/pick-topic.component';
-import { SignOffComponent } from './sign-off/sign-off.component';
-import { ConfirmSendComponent } from './confirm-send/confirm-send.component';
+import { PreviewCardComponent } from './preview-card/preview-card.component';
 import { CardSentComponent } from './card-sent/card-sent.component';
 import { WriteCardComponent } from './write-card/write-card.component';
-import { ConfirmMpComponent } from './confirm-mp/confirm-mp.component';
 import { PostcardLengthValidatorDirective } from './shared/postcard-length-validator.directive';
 
 @NgModule({
@@ -20,11 +18,9 @@ import { PostcardLengthValidatorDirective } from './shared/postcard-length-valid
     AppComponent,
     PickMpComponent,
     PickTopicComponent,
-    SignOffComponent,
-    ConfirmSendComponent,
+    PreviewCardComponent,
     CardSentComponent,
     WriteCardComponent,
-    ConfirmMpComponent,
     PostcardLengthValidatorDirective
   ],
   imports: [

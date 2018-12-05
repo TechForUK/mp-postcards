@@ -41,6 +41,6 @@ export class WriteCardComponent implements OnInit {
   onSubmitPostcard() {
     this.postcardStore.addPostcard(this.message, this.name, this.address, this.email);
     
-    this.router.navigate(['/confirm-send']);
+    this.router.navigate(['/preview-card']);
   }
 }

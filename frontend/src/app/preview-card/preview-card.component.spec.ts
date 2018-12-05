@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConfirmSendComponent } from './confirm-send.component';
+import { PreviewCardComponent } from './preview-card.component';
 
 describe('ConfirmSendComponent', () => {
-  let component: ConfirmSendComponent;
-  let fixture: ComponentFixture<ConfirmSendComponent>;
+  let component: PreviewCardComponent;
+  let fixture: ComponentFixture<PreviewCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConfirmSendComponent ]
+      declarations: [ PreviewCardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConfirmSendComponent);
+    fixture = TestBed.createComponent(PreviewCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

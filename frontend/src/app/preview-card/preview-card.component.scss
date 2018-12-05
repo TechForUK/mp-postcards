@@ -1,0 +1,42 @@
+@import "../../styles/colours.scss";
+
+.postcard-container {
+    overflow-y: auto;
+}
+
+.postcard-preview {
+    width: 40em;
+    height: 28em;
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 2em auto 2em auto;
+    border: 1px solid $secondary-background;
+        
+    header {
+        margin: 1em 0 0 10%;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .postcard-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        flex: 1;
+
+        margin: 0 0 2em 0;
+
+        .postcard-message {
+            padding: 1.5em;
+            flex: 0 0 55%;
+        }
+
+        address {
+            padding: 1.5em;
+            border-left: 1px solid $secondary-background;
+            flex: 0 0 45%;
+        }
+    }
+}
